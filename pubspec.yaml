@@ -60,6 +60,7 @@ flutter:
   assets:
   - images/splash_image.jpg
   - images/icons/map.png
+  - images/start_image.jpg
 
   # To add assets to your application, add an assets section, like this:
   # assets:
