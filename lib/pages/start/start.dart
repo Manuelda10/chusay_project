@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:chusay_project/widgets/button/button.dart';
+import 'package:chusay_project/widgets/button/button_register.dart';
 
 class StartScreen extends StatefulWidget{
   const StartScreen({super.key});
@@ -15,13 +16,19 @@ class _StartScreen extends State<StartScreen>{
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
-          padding: const EdgeInsets.only(top: 80),
+          padding: const EdgeInsets.only(top: 90),
           width: double.infinity,
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("images/start_image.jpg"), 
+              fit:BoxFit.cover
+              )
+            ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,
-            children: const [
-              Text(
+            children: [
+              const Text(
                 "Planifica tus viajes", 
                 style: TextStyle(color: Colors.black,
                   fontSize: 32, 
@@ -29,11 +36,11 @@ class _StartScreen extends State<StartScreen>{
                   ),
                 textAlign: TextAlign.center,
               ),
-              SizedBox(
+              const SizedBox(
                   width: 100,
                   height: 5,
               ),
-              Text(
+              const Text(
                 "Conéctate con otros viajeros", 
                 style: TextStyle(color: Colors.black,
                   fontSize: 16, 
@@ -41,19 +48,21 @@ class _StartScreen extends State<StartScreen>{
                   ),
                 textAlign: TextAlign.center,
               ),
-              SizedBox(
+              const SizedBox(
                   width: 100,
                   height: 400,
               ),
               ButtonLogin(
                 textButton: "Iniciar Sesión",
+                onClick: () {},
               ),
-              SizedBox(
+              const SizedBox(
                   width: 100,
                   height: 15,
               ),
-              ButtonLogin(
-                textButton: "Regístrate"
+              ButtonRegister(
+                textButton: "Regístrate",
+                onClick: (){},
               ),
             ],
           ),

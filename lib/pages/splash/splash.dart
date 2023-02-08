@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:chusay_project/widgets/button/button.dart';
+import 'package:chusay_project/pages/start/start.dart';
 
 class SplashScreen extends StatefulWidget{
   const SplashScreen({super.key});
@@ -64,8 +65,14 @@ class _SplashScreen extends State<SplashScreen>{
                   width: 100,
                   height: 320,
                 ),
-                const ButtonLogin(
+                ButtonLogin(
                   textButton: "Comencemos",
+                  onClick: (){
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const StartScreen())
+                    );
+                  },
                 ),
                 const SizedBox(
                   width: 100,
