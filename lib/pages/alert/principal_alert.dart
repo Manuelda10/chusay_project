@@ -44,6 +44,9 @@ class _AlertPrincipalScreen extends State<AlertPrincipalScreen>{
                   viewportFraction: 1,
                   enlargeCenterPage: false,
                   aspectRatio: 2.0,
+                  enableInfiniteScroll: false,
+                  autoPlay: false,
+                  initialPage: 1,
                   // autoPlay: false,
                   onPageChanged: (index, reason) {
                     setState(() {
