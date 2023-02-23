@@ -1,5 +1,4 @@
 import 'package:chusay_project/pages/alert/principal_alert.dart';
-import 'package:chusay_project/pages/travel/travel.dart';
 import 'package:flutter/material.dart';
 import 'package:chusay_project/widgets/button/button.dart';
 import 'package:chusay_project/widgets/button/button_register.dart';
@@ -59,7 +58,7 @@ class _StartScreen extends State<StartScreen>{
                 onClick: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const TravelPage())
+                    MaterialPageRoute(builder: (context) => const AlertPrincipalScreen())
                   );
                 },
               ),

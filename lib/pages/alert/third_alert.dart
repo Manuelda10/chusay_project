@@ -1,3 +1,4 @@
+import 'package:chusay_project/pages/travel/travel.dart';
 import 'package:chusay_project/widgets/button/button.dart';
 import 'package:flutter/material.dart';
 
@@ -196,7 +197,12 @@ class _ThirdAlert extends State<ThirdAlert>{
                 width: 100,
                 height: 20,
               ),
-        ButtonLogin(textButton: "Comencemos", onClick: (){})
+        ButtonLogin(textButton: "Comencemos", onClick: (){
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const TravelPage())
+          );
+        })
       ],
     ); 
   }
