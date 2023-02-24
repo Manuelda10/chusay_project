@@ -1,3 +1,4 @@
+import 'package:chusay_project/pages/map/map.dart';
 import 'package:flutter/material.dart';
 import 'package:chusay_project/widgets/button/button.dart';
 import 'package:chusay_project/widgets/button/button_register.dart';
@@ -64,7 +65,12 @@ class _ErrorPage extends State<ErrorPage>{
           ),
           ButtonLogin(
             textButton: "Intentar otra vez",
-            onClick: () {},
+            onClick: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const MapPage())
+              );
+            },
           ),
           const SizedBox(
               width: 100,
