@@ -1,13 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.chusay_project">
-   <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
    <application
         android:label="chusay_project"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDHL-cizWcJms5dG1dJvd9mISU_3ktdWKM"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"
