@@ -15,7 +15,6 @@ class MyApp extends StatelessWidget {
   // Press r to hot reload
   @override
   Widget build(BuildContext context) {
-    print(FlutterConfig.get('GOOGLE_MAPS_API'));
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
