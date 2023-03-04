@@ -1,6 +1,7 @@
 import 'package:chusay_project/pages/alert/principal_alert.dart';
 import 'package:chusay_project/pages/error/error.dart';
 import 'package:chusay_project/pages/login/login.dart';
+import 'package:chusay_project/pages/register/register.dart';
 import 'package:flutter/material.dart';
 import 'package:chusay_project/widgets/button/button.dart';
 import 'package:chusay_project/widgets/button/button_register.dart';
@@ -73,7 +74,7 @@ class _StartScreen extends State<StartScreen>{
                 onClick: (){
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const ErrorPage())
+                    MaterialPageRoute(builder: (context) => const RegisterPage())
                   );
                 },
               ),
