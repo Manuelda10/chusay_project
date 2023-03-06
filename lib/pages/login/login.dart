@@ -2,6 +2,9 @@ import 'package:chusay_project/pages/alert/principal_alert.dart';
 import 'package:chusay_project/widgets/button/button.dart';
 import 'package:chusay_project/widgets/button/button_register.dart';
 import 'package:flutter/material.dart';   
+import 'package:firebase_auth/firebase_auth.dart';
+
+import '../../main.dart';
   
 class LoginPage extends StatefulWidget{
   const LoginPage({super.key});
@@ -11,10 +14,20 @@ class LoginPage extends StatefulWidget{
 }
 
 class _LoginPage extends State<LoginPage>{
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+
+  @override
+  void dispose(){
+    emailController.dispose();
+    passwordController.dispose();
+
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context){
     return Scaffold(
-      
       body: SingleChildScrollView(
         padding: const EdgeInsets.only(top: 10, left: 20, right: 20),
         child: Column(
@@ -38,6 +51,8 @@ class _LoginPage extends State<LoginPage>{
               height: 20,
             ),
             TextFormField(
+              controller: emailController,
+              textInputAction: TextInputAction.next,
               decoration: const InputDecoration(
                 hintText: 'Email',
                 suffixIcon: Icon(
@@ -60,6 +75,8 @@ class _LoginPage extends State<LoginPage>{
               height: 20,
             ),
             TextFormField(
+              controller: passwordController,
+              textInputAction: TextInputAction.next,
               decoration: const InputDecoration(
                 hintText: 'Contraseña',
                 suffixIcon: Icon(
@@ -83,12 +100,7 @@ class _LoginPage extends State<LoginPage>{
             ),
             ButtonLogin(
               textButton: 'Ingresar', 
-              onClick: (){
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const AlertPrincipalScreen())
-                );
-              }
+              onClick: signIn
             ),
             const SizedBox(
               width: 100,
@@ -111,5 +123,28 @@ class _LoginPage extends State<LoginPage>{
         ),
       ),
     );
+  }
+
+  Future signIn() async{
+
+    showDialog(
+      context: context, 
+      barrierDismissible: false,
+      builder: (context) => const Center(child: CircularProgressIndicator())
+    );
+    
+    try{
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: emailController.text.trim(), 
+        password: passwordController.text.trim()
+      );
+    } on FirebaseAuthException catch (e){
+      print(e);
+    }
+
+    //Navigator.of(context) not working!
+    navigatorKey.currentState!.popUntil((route) => route.isFirst);
+    
+    
   }
 }

@@ -1,5 +1,6 @@
 import 'package:chusay_project/pages/travel/travel.dart';
 import 'package:chusay_project/widgets/button/button.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class ThirdAlert extends StatefulWidget{
@@ -198,10 +199,11 @@ class _ThirdAlert extends State<ThirdAlert>{
                 height: 20,
               ),
         ButtonLogin(textButton: "Comencemos", onClick: (){
-          Navigator.push(
+          /*Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => const TravelPage())
-          );
+          );*/
+          FirebaseAuth.instance.signOut();
         })
       ],
     ); 
