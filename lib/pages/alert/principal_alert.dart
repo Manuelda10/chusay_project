@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:chusay_project/pages/alert/secondary_alert.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:chusay_project/pages/alert/first_alert.dart';
 import 'package:chusay_project/pages/alert/third_alert.dart';
@@ -15,6 +16,7 @@ class AlertPrincipalScreen extends StatefulWidget {
 }
 
 class _AlertPrincipalScreen extends State<AlertPrincipalScreen>{
+  final user = FirebaseAuth.instance.currentUser;
   int _current = 0;
   final CarouselController _controller = CarouselController();
   final List<Widget> screensList = [
@@ -31,6 +33,12 @@ class _AlertPrincipalScreen extends State<AlertPrincipalScreen>{
       /*body: SingleChildScrollView(
         child: ThirdAlert()
       ),*/
+      appBar: AppBar(
+        title: Text(user!.email!),
+        backgroundColor: Colors.white,
+        centerTitle: true,
+        foregroundColor: Colors.black,
+      ),
       body: Column(
         children: [
           Builder(
