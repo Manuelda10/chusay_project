@@ -1,4 +1,5 @@
 import 'package:chusay_project/pages/alert/principal_alert.dart';
+import 'package:chusay_project/pages/auth/auth_page.dart';
 import 'package:chusay_project/pages/error/error.dart';
 import 'package:chusay_project/pages/login/login.dart';
 import 'package:chusay_project/pages/register/register.dart';
@@ -61,7 +62,7 @@ class _StartScreen extends State<StartScreen>{
                 onClick: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const LoginPage())
+                    MaterialPageRoute(builder: (context) => const AuthPage())
                   );
                 },
               ),
@@ -74,7 +75,7 @@ class _StartScreen extends State<StartScreen>{
                 onClick: (){
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const RegisterPage())
+                    MaterialPageRoute(builder: (context) => const AuthPage())
                   );
                 },
               ),
