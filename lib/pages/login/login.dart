@@ -1,13 +1,20 @@
 import 'package:chusay_project/pages/alert/principal_alert.dart';
 import 'package:chusay_project/widgets/button/button.dart';
 import 'package:chusay_project/widgets/button/button_register.dart';
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';   
 import 'package:firebase_auth/firebase_auth.dart';
 
 import '../../main.dart';
+import '../auth/auth_page.dart';
   
 class LoginPage extends StatefulWidget{
-  const LoginPage({super.key});
+  final VoidCallback onClickedSignUp;
+
+  const LoginPage({
+    Key? key,
+    required this.onClickedSignUp
+  }) : super(key: key);
 
   @override
   State<LoginPage> createState() => _LoginPage();
@@ -50,7 +57,7 @@ class _LoginPage extends State<LoginPage>{
               width: 100,
               height: 20,
             ),
-            TextFormField(
+            TextFormField(  
               controller: emailController,
               textInputAction: TextInputAction.next,
               decoration: const InputDecoration(
@@ -118,7 +125,7 @@ class _LoginPage extends State<LoginPage>{
               width: 100,
               height: 20,
             ),
-            ButtonRegister(textButton: 'Regístrate', onClick: (){})
+            ButtonRegister(textButton: 'Regístrate', onClick: widget.onClickedSignUp)
           ],
         ),
       ),

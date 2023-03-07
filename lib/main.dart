@@ -1,5 +1,7 @@
 import 'package:chusay_project/pages/alert/principal_alert.dart';
+import 'package:chusay_project/pages/auth/auth_page.dart';
 import 'package:chusay_project/pages/login/login.dart';
+import 'package:chusay_project/widgets/utils/utils.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:chusay_project/pages/splash/splash.dart';
@@ -24,6 +26,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {  
     return MaterialApp(
+      scaffoldMessengerKey: Utils.messengerKey,
       navigatorKey: navigatorKey,
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
@@ -52,7 +55,7 @@ class MainPage extends StatelessWidget{
           } else if(snapshot.hasData){
             return const AlertPrincipalScreen();
           } else {
-            return const LoginPage();  
+            return const AuthPage();  
           }
         }
       ),
