@@ -60,7 +60,7 @@ class _ThirdAlert extends State<ThirdAlert>{
                   borderRadius: BorderRadius.circular(10.0),
                   image: DecorationImage(
                     opacity: _opacity1,
-                    image: const NetworkImage("https://images.pexels.com/photos/2424395/pexels-photo-2424395.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"), 
+                    image: const NetworkImage("https://images.unsplash.com/photo-1473116763249-2faaef81ccda?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=896&q=80"), 
                     fit:BoxFit.cover
                     )
                   ),
@@ -99,7 +99,7 @@ class _ThirdAlert extends State<ThirdAlert>{
                           borderRadius: BorderRadius.circular(10.0),
                           image: DecorationImage(
                             opacity: _opacity2,
-                            image: const NetworkImage("https://images.pexels.com/photos/2424395/pexels-photo-2424395.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"), 
+                            image: const NetworkImage("https://images.pexels.com/photos/2132087/pexels-photo-2132087.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"), 
                             fit:BoxFit.cover
                             )
                           ),
@@ -136,7 +136,7 @@ class _ThirdAlert extends State<ThirdAlert>{
                             borderRadius: BorderRadius.circular(10.0),
                           image: DecorationImage(
                             opacity: _opacity3,
-                            image: const NetworkImage("https://images.pexels.com/photos/2424395/pexels-photo-2424395.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"), 
+                            image: const NetworkImage("https://images.pexels.com/photos/461593/pexels-photo-461593.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"), 
                             fit:BoxFit.cover
                             )
                           ),
@@ -173,7 +173,7 @@ class _ThirdAlert extends State<ThirdAlert>{
                     borderRadius: BorderRadius.circular(10.0),
                   image: DecorationImage(
                     opacity: _opacity4,
-                    image: const NetworkImage("https://images.pexels.com/photos/2424395/pexels-photo-2424395.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"), 
+                    image: const NetworkImage("https://images.pexels.com/photos/1174103/pexels-photo-1174103.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"), 
                     fit:BoxFit.cover
                     )
                   ),
@@ -199,11 +199,11 @@ class _ThirdAlert extends State<ThirdAlert>{
                 height: 20,
               ),
         ButtonLogin(textButton: "Comencemos", onClick: (){
-          /*Navigator.push(
+          Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => const TravelPage())
-          );*/
-          FirebaseAuth.instance.signOut();
+          );
+          //FirebaseAuth.instance.signOut();
         })
       ],
     ); 

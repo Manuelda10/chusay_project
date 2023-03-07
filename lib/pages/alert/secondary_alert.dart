@@ -31,7 +31,7 @@ class SecondaryAlert extends StatelessWidget{
               height: 300,
               decoration: const BoxDecoration(
               image: DecorationImage(
-                image: NetworkImage("https://images.pexels.com/photos/2424395/pexels-photo-2424395.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"), 
+                image: NetworkImage("https://images.unsplash.com/photo-1503220317375-aaad61436b1b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"), 
                 fit:BoxFit.cover
                 )
               ),

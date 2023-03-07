@@ -1,12 +1,16 @@
+import 'package:after_layout/after_layout.dart';
 import 'package:chusay_project/pages/alert/principal_alert.dart';
 import 'package:chusay_project/pages/auth/auth_page.dart';
 import 'package:chusay_project/pages/login/login.dart';
+import 'package:chusay_project/pages/start/start.dart';
 import 'package:chusay_project/widgets/utils/utils.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:chusay_project/pages/splash/splash.dart';
 import 'package:flutter_config/flutter_config.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,15 +33,18 @@ class MyApp extends StatelessWidget {
       scaffoldMessengerKey: Utils.messengerKey,
       navigatorKey: navigatorKey,
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Chusay',
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
       //home: const MyHomePage(title: 'Flutter Demo Home Page'),
-      home: const MainPage(),
+      //home: const MainPage(),
+      home: Splash()
     );
   }
 }
+
+
 
 class MainPage extends StatelessWidget{
   const MainPage({super.key});
@@ -55,7 +62,8 @@ class MainPage extends StatelessWidget{
           } else if(snapshot.hasData){
             return const AlertPrincipalScreen();
           } else {
-            return const AuthPage();  
+            return const StartScreen();
+            //return const AuthPage();  
           }
         }
       ),
@@ -63,3 +71,38 @@ class MainPage extends StatelessWidget{
   }
 }
   // This widget is the home page of your application. It is stateful, meaning
+
+
+// Splash screen temporal  
+class Splash extends StatefulWidget{
+  @override
+  SplashState createState() => SplashState();
+}
+
+class SplashState extends State<Splash> with AfterLayoutMixin<Splash> {
+  Future checkFirstSeen() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool _seen = (prefs.getBool('seen') ?? false);
+
+    if (_seen) {
+      Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => const MainPage()));
+    } else {
+      await prefs.setBool('seen', true);
+      Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => const SplashScreen()));
+    }
+  }
+
+  @override
+  void afterFirstLayout(BuildContext context) => checkFirstSeen();
+
+  @override
+  Widget build(BuildContext context) {
+    return const Scaffold(
+      body: Center(
+        child: Text('Loading...'),
+      ),
+    );
+  }
+}

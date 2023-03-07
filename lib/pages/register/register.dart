@@ -1,5 +1,6 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import '../../widgets/button/button.dart';
@@ -25,6 +26,7 @@ class _RegisterPage extends State<RegisterPage>{
   final formKey = GlobalKey<FormState>();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  bool isHiddenPassword = true;
 
   @override
   void dispose(){
@@ -56,7 +58,51 @@ class _RegisterPage extends State<RegisterPage>{
                 textAlign: TextAlign.center,
               ),
               const SizedBox(width: 100, height: 20),
-              TextFormField(  
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  ElevatedButton.icon(  
+                    style: ButtonStyle(
+                      backgroundColor:MaterialStateProperty.all<Color>(const Color(0xFF167351)),
+                      minimumSize: MaterialStateProperty.all(const Size(90, 50)),
+                      shape: MaterialStateProperty.all(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5.0),
+                        )
+                      )
+                    ), // <-- ElevatedButton
+                    onPressed: () {},
+                    icon: const Icon(
+                      Icons.g_mobiledata_rounded,
+                      size: 35.0,
+                    ),
+                    label: Text('Google'),
+                  ),
+              
+                  ElevatedButton.icon(  
+                    style: ButtonStyle(
+                      backgroundColor:MaterialStateProperty.all<Color>(const Color(0xFF167351)),
+                      minimumSize: MaterialStateProperty.all(const Size(90, 50)),
+                      shape: MaterialStateProperty.all(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5.0),
+                        )
+                      )
+                    ), // <-- ElevatedButton
+                    onPressed: () {},
+                    icon: const Icon(
+                      Icons.facebook_outlined,
+                      size: 24.0,
+                    ),
+                    label: Text('Facebook'),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                width: 100,
+                height: 20,
+              ),
+              /*TextFormField(  
                 decoration: const InputDecoration(
                   hintText: 'Usuario',
                   suffixIcon: Icon(
@@ -73,14 +119,14 @@ class _RegisterPage extends State<RegisterPage>{
                   }
                   return null;
                 },
-              ),
+              ),*/
               const SizedBox( width: 100, height: 10),
               TextFormField(
                 controller: emailController,
                 textInputAction: TextInputAction.next,
                 decoration: const InputDecoration(
                   labelText: 'Email',
-                  hintText: 'Email',
+                  //hintText: 'Email',
                   suffixIcon: Icon(
                     Icons.account_circle_outlined,
                     color: Color(0xFF167351),
@@ -98,41 +144,42 @@ class _RegisterPage extends State<RegisterPage>{
               ),
               const SizedBox(width: 100, height: 10),
               TextFormField(
-                controller: passwordController,
-                textInputAction: TextInputAction.next,
-                decoration: const InputDecoration(
-                  hintText: 'Contraseña',
-                  suffixIcon: Icon(
-                    Icons.no_encryption_gmailerrorred_outlined,
-                    color: Color(0xFF167351),
+              controller: passwordController,
+              textInputAction: TextInputAction.next,
+              obscureText: isHiddenPassword,
+              decoration: InputDecoration(
+                hintText: 'Contraseña',
+                suffixIcon: InkWell(
+                  onTap: () => setState(() {isHiddenPassword = !isHiddenPassword;}),
+                  child: Icon(
+                    isHiddenPassword == true
+                      ? Icons.visibility
+                      : Icons.visibility_off ,
+                    color: const Color(0xFF167351),
                     size: 30,
                   ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(10)))
                 ),
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                validator: (value) => value != null && value.length < 6
-                  ? 'Ingresar un mínimo de 6 caracteres'
-                  : null
+                border: const OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(10)))
               ),
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              validator: (value) => value != null && value.length < 6
+                ? 'Ingresar un mínimo de 6 caracteres'
+                : null
+            ),
               const SizedBox(width: 100, height: 10),
               TextFormField(
-                decoration: const InputDecoration(
-                  hintText: 'Confirmar contraseña',
-                  suffixIcon: Icon(
-                    Icons.no_encryption_gmailerrorred_outlined,
-                    color: Color(0xFF167351),
-                    size: 30,
-                  ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(10)))
-                ),
-                validator: (String? value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Tienes que ingresar algún valor';
-                  }
-                  return null;
-                },
+              textInputAction: TextInputAction.next,
+              obscureText: true,
+              decoration: const InputDecoration(
+                hintText: 'Confrimar contraseña',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(10)))
+              ),
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              validator: (value) => value != passwordController.text.trim()
+                ? 'Ingresa la misma contraseña'
+                : null
               ),
               const SizedBox(width: 100, height: 20),
               ButtonLogin(
@@ -140,13 +187,25 @@ class _RegisterPage extends State<RegisterPage>{
                 onClick: signUp
               ),
               const SizedBox(width: 100, height: 20),
-              const Text(
-              "¿Ya tienes una cuenta? Inicia Sesión", 
-              style: TextStyle(color: Colors.grey,
-                fontSize: 16, 
-                fontWeight: FontWeight.normal,
-                ),
-              textAlign: TextAlign.center,
+              RichText(
+                text: TextSpan(
+                  style: const TextStyle(color: Colors.grey,
+                    fontSize: 17, 
+                    fontWeight: FontWeight.normal,
+                  ),
+                  text: "¿Ya tienes una cuenta? ",
+                  children: [
+                    TextSpan(
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = widget.onClickedSignIn,
+                      text: "Inicia sesión",
+                      style: const TextStyle(
+                        color: Colors.black,
+                        decoration: TextDecoration.underline
+                      ),
+                    )
+                  ]
+                )
               )
             ]
           ),

@@ -14,13 +14,13 @@ class _MapPage extends State<MapPage>{
   final Completer<GoogleMapController> _controller = Completer<GoogleMapController>();
 
   static const CameraPosition _kGooglePlex = CameraPosition(
-    target: LatLng(37.42796133580664, -122.085749655962),
+    target: LatLng(-12.0952447, -77.0409203),
     zoom: 14.4746,
   );
 
   static const CameraPosition _kLake = CameraPosition(
       bearing: 192.8334901395799,
-      target: LatLng(37.43296265331129, -122.08832357078792),
+      target: LatLng(-12.0561525, -77.0867083),
       tilt: 59.440717697143555,
       zoom: 19.151926040649414);
 
@@ -42,8 +42,8 @@ class _MapPage extends State<MapPage>{
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: _goToTheLake,
-        label: const Text('To the lake!'),
-        icon: const Icon(Icons.directions_boat),
+        label: const Text('A San Marcos!'),
+        icon: const Icon(Icons.account_balance_sharp),
       ),
     );
   }

@@ -55,10 +55,10 @@ class _StartScreen extends State<StartScreen>{
               ),
               const SizedBox(
                   width: 100,
-                  height: 400,
+                  height: 450,
               ),
               ButtonLogin(
-                textButton: "Iniciar Sesión",
+                textButton: "Continuar",
                 onClick: () {
                   Navigator.push(
                     context,
@@ -70,7 +70,7 @@ class _StartScreen extends State<StartScreen>{
                   width: 100,
                   height: 15,
               ),
-              ButtonRegister(
+              /*ButtonRegister(
                 textButton: "Regístrate",
                 onClick: (){
                   Navigator.push(
@@ -78,7 +78,7 @@ class _StartScreen extends State<StartScreen>{
                     MaterialPageRoute(builder: (context) => const AuthPage())
                   );
                 },
-              ),
+              ),*/
             ],
           ),
         ),

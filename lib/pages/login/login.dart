@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import '../../main.dart';
+import '../../widgets/utils/utils.dart';
 import '../auth/auth_page.dart';
   
 class LoginPage extends StatefulWidget{
@@ -23,6 +24,7 @@ class LoginPage extends StatefulWidget{
 class _LoginPage extends State<LoginPage>{
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  bool isHiddenPassword = true;
 
   @override
   void dispose(){
@@ -35,6 +37,7 @@ class _LoginPage extends State<LoginPage>{
   @override
   Widget build(BuildContext context){
     return Scaffold(
+      backgroundColor: const Color(0xFFF5F5F5),
       body: SingleChildScrollView(
         padding: const EdgeInsets.only(top: 10, left: 20, right: 20),
         child: Column(
@@ -57,6 +60,50 @@ class _LoginPage extends State<LoginPage>{
               width: 100,
               height: 20,
             ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                ElevatedButton.icon(  
+                  style: ButtonStyle(
+                    backgroundColor:MaterialStateProperty.all<Color>(const Color(0xFF167351)),
+                    minimumSize: MaterialStateProperty.all(const Size(90, 50)),
+                    shape: MaterialStateProperty.all(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5.0),
+                      )
+                    )
+                  ), // <-- ElevatedButton
+                  onPressed: () {},
+                  icon: const Icon(
+                    Icons.g_mobiledata_rounded,
+                    size: 35.0,
+                  ),
+                  label: Text('Google'),
+                ),
+             
+                ElevatedButton.icon(  
+                  style: ButtonStyle(
+                    backgroundColor:MaterialStateProperty.all<Color>(const Color(0xFF167351)),
+                    minimumSize: MaterialStateProperty.all(const Size(90, 50)),
+                    shape: MaterialStateProperty.all(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5.0),
+                      )
+                    )
+                  ), // <-- ElevatedButton
+                  onPressed: () {},
+                  icon: const Icon(
+                    Icons.facebook_outlined,
+                    size: 24.0,
+                  ),
+                  label: Text('Facebook'),
+                ),
+              ],
+            ),
+            const SizedBox(
+              width: 100,
+              height: 20,
+            ),
             TextFormField(  
               controller: emailController,
               textInputAction: TextInputAction.next,
@@ -69,13 +116,7 @@ class _LoginPage extends State<LoginPage>{
                 ),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(10)))
-              ),
-              validator: (String? value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter some text';
-                }
-                return null;
-              },
+              )
             ),
             const SizedBox(
               width: 100,
@@ -84,14 +125,20 @@ class _LoginPage extends State<LoginPage>{
             TextFormField(
               controller: passwordController,
               textInputAction: TextInputAction.next,
-              decoration: const InputDecoration(
+              obscureText: isHiddenPassword,
+              decoration: InputDecoration(
                 hintText: 'Contraseña',
-                suffixIcon: Icon(
-                  Icons.no_encryption_gmailerrorred_outlined,
-                  color: Color(0xFF167351),
-                  size: 30,
+                suffixIcon: InkWell(
+                  onTap: () => setState(() {isHiddenPassword = !isHiddenPassword;}),
+                  child: Icon(
+                    isHiddenPassword == true
+                      ? Icons.visibility
+                      : Icons.visibility_off ,
+                    color: const Color(0xFF167351),
+                    size: 30,
+                  ),
                 ),
-                border: OutlineInputBorder(
+                border: const OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(10)))
               ),
               validator: (String? value) {
@@ -147,6 +194,8 @@ class _LoginPage extends State<LoginPage>{
       );
     } on FirebaseAuthException catch (e){
       print(e);
+      Utils.showSnackBar(e.message);
+
     }
 
     //Navigator.of(context) not working!

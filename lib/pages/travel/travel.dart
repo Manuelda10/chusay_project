@@ -1,3 +1,4 @@
+import 'package:chusay_project/pages/map/map.dart';
 import 'package:flutter/material.dart';
 
 class TravelPage extends StatefulWidget{
@@ -24,11 +25,17 @@ class _TravelPageState extends State<TravelPage>{
         foregroundColor: Colors.black,
         actions: [
           IconButton(
-            icon: const Icon(Icons.filter_list),
+            icon: const Icon(Icons.map),
             tooltip: 'Show Snackbar',
-            onPressed: () {
+            /*onPressed: () {
               ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(content: Text('This is a snackbar')));
+            },*/
+            onPressed: (){
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const MapPage()),
+              );
             },
           ),
         ],
@@ -60,7 +67,7 @@ class _TravelPageState extends State<TravelPage>{
                   borderRadius: BorderRadius.circular(10.0),
                   image: DecorationImage(
                     opacity: _opacity1,
-                    image: const NetworkImage("https://images.pexels.com/photos/2424395/pexels-photo-2424395.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"), 
+                    image: const NetworkImage("https://lp-cms-production.imgix.net/2019-06/9b0206e3ee0ac4b4b39d4d07b2080bd4-machu-picchu.jpg"), 
                     fit:BoxFit.cover
                     )
                   ),
@@ -93,7 +100,7 @@ class _TravelPageState extends State<TravelPage>{
                     borderRadius: BorderRadius.circular(10.0),
                   image: DecorationImage(
                     opacity: _opacity2,
-                    image: const NetworkImage("https://images.pexels.com/photos/2424395/pexels-photo-2424395.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"), 
+                    image: const NetworkImage("https://images.pexels.com/photos/7144192/pexels-photo-7144192.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"), 
                     fit:BoxFit.cover
                     )
                   ),
@@ -126,7 +133,7 @@ class _TravelPageState extends State<TravelPage>{
                     borderRadius: BorderRadius.circular(10.0),
                   image: DecorationImage(
                     opacity: _opacity3,
-                    image: const NetworkImage("https://images.pexels.com/photos/2424395/pexels-photo-2424395.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"), 
+                    image: const NetworkImage("https://www.peru.travel/Contenido/Destino/Imagen/pe/27/1.1/Principal/Plaza%20de%20Armas%20Arequipa.jpg"), 
                     fit:BoxFit.cover
                     )
                   ),
@@ -159,7 +166,7 @@ class _TravelPageState extends State<TravelPage>{
                     borderRadius: BorderRadius.circular(10.0),
                   image: DecorationImage(
                     opacity: _opacity4,
-                    image: const NetworkImage("https://images.pexels.com/photos/2424395/pexels-photo-2424395.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"), 
+                    image: const NetworkImage("https://www.peru.travel/Contenido/Experiencia/Imagen/pe/1150/1.2/banos-inca.jpg"), 
                     fit:BoxFit.cover
                     )
                   ),
