@@ -78,6 +78,7 @@ class _SplashScreen extends State<SplashScreen>{
                   width: 100,
                   height: 10,
                 ),
+                /*
                 const Text(
                   "¿Ya tienes una cuenta? Inicia sesión", 
                   style: TextStyle(color: Colors.white,
@@ -86,7 +87,7 @@ class _SplashScreen extends State<SplashScreen>{
                     ),
                   textAlign: TextAlign.center,
                   selectionColor: Color.fromARGB(255, 0, 0, 0),
-                ),
+                ),*/
 
               ]
             ),

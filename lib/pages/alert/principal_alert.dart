@@ -30,15 +30,6 @@ class _AlertPrincipalScreen extends State<AlertPrincipalScreen>{
   @override
   Widget build(BuildContext context){
     return Scaffold(
-      /*body: SingleChildScrollView(
-        child: ThirdAlert()
-      ),*/
-      appBar: AppBar(
-        title: Text(user!.email!),
-        backgroundColor: Colors.white,
-        centerTitle: true,
-        foregroundColor: Colors.black,
-      ),
       body: Column(
         children: [
           Builder(
