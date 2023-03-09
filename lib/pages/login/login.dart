@@ -1,4 +1,5 @@
 import 'package:chusay_project/pages/alert/principal_alert.dart';
+import 'package:chusay_project/pages/start/start.dart';
 import 'package:chusay_project/widgets/button/button.dart';
 import 'package:chusay_project/widgets/button/button_register.dart';
 import 'package:email_validator/email_validator.dart';
@@ -187,11 +188,19 @@ class _LoginPage extends State<LoginPage>{
       builder: (context) => const Center(child: CircularProgressIndicator())
     );
     
-    try{
+    try{ 
+      /*Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const AlertPrincipalScreen()),
+      );*/
+      //Navigator.pop(context);
       await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: emailController.text.trim(), 
         password: passwordController.text.trim()
       );
+      print("Se logró la autentificación");
+      
+
     } on FirebaseAuthException catch (e){
       print(e);
       Utils.showSnackBar(e.message);
