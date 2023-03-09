@@ -1,5 +1,8 @@
 import 'package:chusay_project/pages/map/map.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
+import '../../widgets/button/button.dart';
 
 class TravelPage extends StatefulWidget{
   const TravelPage({super.key});
@@ -180,6 +183,14 @@ class _TravelPageState extends State<TravelPage>{
                   ),
                 ),
               ),
+              const SizedBox(
+                width: 100,
+                height: 20,
+              ),
+              ButtonLogin(textButton: "Cerrar sesión", onClick: (){
+                Navigator.pop(context);
+                FirebaseAuth.instance.signOut();
+              }),
               const SizedBox(
                 width: 100,
                 height: 20,

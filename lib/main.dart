@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
       ),
       //home: const MyHomePage(title: 'Flutter Demo Home Page'),
       //home: const MainPage(),
-      home: Splash()
+      home: MainPage()
     );
   }
 }
@@ -57,13 +57,15 @@ class MainPage extends StatelessWidget{
         builder: (context, snapshot){
           if(snapshot.connectionState == ConnectionState.waiting){
             return const Center(child: CircularProgressIndicator());
+          } else if(snapshot.connectionState == ConnectionState.done){
+            return const Center(child: Text("Se ha establecido la conexión"));
           } else if (snapshot.hasError){
             return const Center(child: Text('Algo fue mal'));
           } else if(snapshot.hasData){
             return const AlertPrincipalScreen();
           } else {
-            return const StartScreen();
-            //return const AuthPage();  
+            //return const Center(child: Text("Esta página sí tiene info"));
+            return const AuthPage();
           }
         }
       ),
@@ -72,9 +74,11 @@ class MainPage extends StatelessWidget{
 }
   // This widget is the home page of your application. It is stateful, meaning
 
-
+/*
 // Splash screen temporal  
 class Splash extends StatefulWidget{
+  const Splash({super.key});
+
   @override
   SplashState createState() => SplashState();
 }
@@ -82,15 +86,17 @@ class Splash extends StatefulWidget{
 class SplashState extends State<Splash> with AfterLayoutMixin<Splash> {
   Future checkFirstSeen() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    bool _seen = (prefs.getBool('seen') ?? false);
+    bool seen = (prefs.getBool('seen') ?? false);
 
-    if (_seen) {
+    if (seen) {
+      print("Ya ha sido visto la primera vez y pasa por aquí");
       Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => const MainPage()));
+        MaterialPageRoute(builder: (context) => const MainPage()));
     } else {
       await prefs.setBool('seen', true);
+      print("Se ve la app por primera vez");
       Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => const SplashScreen()));
+        MaterialPageRoute(builder: (context) => const SplashScreen()));
     }
   }
 
@@ -101,8 +107,8 @@ class SplashState extends State<Splash> with AfterLayoutMixin<Splash> {
   Widget build(BuildContext context) {
     return const Scaffold(
       body: Center(
-        child: Text('Loading...'),
+        child: Text('Iniciando...'),
       ),
     );
   }
-}
+}*/
